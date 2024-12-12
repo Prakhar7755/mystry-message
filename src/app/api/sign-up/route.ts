@@ -23,7 +23,9 @@ export async function POST(request: Request) {
     }
 
     const existingUserByEmail = await UserModel.findOne({ email });
+
     const verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
+
     if (existingUserByEmail) {
       if (existingUserByEmail.isVerified) {
         return Response.json(
@@ -42,12 +44,13 @@ export async function POST(request: Request) {
 
         await existingUserByEmail.save();
       }
+
     } else {
       const hashedPassword = await bcrypt.hash(password, 10);
       const expiryDate = new Date();
       expiryDate.setHours(expiryDate.getHours() + 1);
 
-      const newUser = new UserModel({
+      const newUser =await new UserModel({
         username,
         email,
         password: hashedPassword,
@@ -81,7 +84,7 @@ export async function POST(request: Request) {
       },
       { status: 201 }
     );
-  } catch (error: unknown) {
+  } catch (error) {
     if (error instanceof Error) {
       console.error("Error registering User | ", error.message);
     } else {
