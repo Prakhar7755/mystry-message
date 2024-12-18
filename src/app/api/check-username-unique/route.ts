@@ -21,6 +21,8 @@ export async function GET(request: Request) {
   await ConnectDB();
 
   try {
+
+    // http://localhost:3000/api/cuu?username=prakh?phone=android
     const { searchParams } = new URL(request.url);
     const queryParam = {
       username: searchParams.get("username"),
