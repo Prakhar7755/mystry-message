@@ -3,7 +3,7 @@ import UserModel from "@/model/User.model";
 // import { usernameValidation } from "@/schemas/signUpSchema";
 // import { z } from "zod";
 
-export async function PSOT(request: Request) {
+export async function POST(request: Request) {
   await ConnectDB();
 
   try {

@@ -48,11 +48,11 @@ export async function GET(request: Request) {
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (err) {
-    console.error("an unexpected error occured: ", err);
+    console.error("an unexpected error occurred: ", err);
     return new Response(
       JSON.stringify({
         success: false,
-        message: "an unexpected error occured: ",
+        message: "an unexpected error occurred: ",
       }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
